@@ -36,12 +36,21 @@
     </div> *@
 
     <div class="container body-content">
-        <div class="col-md-9">
+        <div class="col-md-6">
             @RenderBody()
         </div>
         <div class="col-md-3">
             @* "Users" - the name of the View Component *@
-            @await Component.InvokeAsync("Users");
+            @await Component.InvokeAsync("Users")
+        </div>
+        <div class="col-md-3">
+            @* "User" - the name of the View Component *@
+
+            @* use view component InvokeAsync *@
+            @* @await Component.InvokeAsync("User", new Random().Next(1,10)) *@
+
+            @* use view component as tag helper *@
+            <vc:user id="new Random().Next(1,10)"></vc:user>
         </div>
     </div>
 
