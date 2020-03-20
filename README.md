@@ -1,4 +1,5 @@
-# The Summary of Creating a View Component using Razor Pages
+The Summary of Creating a View Component using Razor Pages
+====
 
 View Components' File Structure
 ----
@@ -16,10 +17,13 @@ View Components' File Structure
     XyzService.cs       // Implementation of the Service
 
 /ViewComponents/        // contains all View Components' Code files
-    FooViewComponent.cs // "Code" part of the Foo View Component (IXyzService is injected)
-    BarViewComponent.cs // "Code" part of the Bar View Component (IXyzService is injected)
-                        // In the end, a "View" is called with "Foo" or "Bar", the name of
-                        // the View Component--like: return View("Foo");
+    FooViewComponent.cs // "Foo" View Component (IXyzService is injected), the "Code" part
+    BarViewComponent.cs // "Bar" View Component (IXyzService is injected), the "Code" part
+
+                        // In the end, the "Code" part will return a "ViewComponent.View",
+                        // and we specify for which View Component the View is intended
+                        // by passing the name of the View Component, in this case, "Foo"
+                        // or "Bar". eg: return View("Foo");
 /Pages/
     _ViewImports.cshtml     // include View Components as tag helpers
                             // eg: @addTagHelper: *, ViewCompDemo <<< the project name
@@ -62,13 +66,13 @@ Difference between Partial View and View Component
 - A Partial View uses Single File Approach, with needed models are injected into it.
 - Using a View Component can
 
-    + callView Component's Invoke/Async(...);
+  - callView Component's Invoke/Async(...);
 
     ```dotnet
         Invoke/Async("[Component-Name"], arg1 = "value1", arg2="value2"...);
     ```
 
-    + use View Component as tag helper
+  - use View Component as tag helper
 
     ```dotnet
         <vc:[view-component-name] arg1="value1" arg2="value2"></vc:[view-component-name]>
@@ -78,4 +82,6 @@ Difference between Partial View and View Component
 
     ```dotnet
         <partial name="_LoginPartial"/>
+            or
+        @Html.Partial("_LoginPartial")
     ```
