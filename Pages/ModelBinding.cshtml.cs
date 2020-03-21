@@ -7,11 +7,13 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace ViewCompDemo.Pages
 {
-    [BindProperties]
+    // [BindProperties]
     public class ModelBindingModel : PageModel
     {
-        public void OnGet()
+        public void OnGet(int id)
         {
+            ViewData["id"] = id;
+
         }
 
         // Request.Form way
@@ -32,9 +34,9 @@ namespace ViewCompDemo.Pages
         // }
 
         // ModelBinding way - Binding to PageModel public properties
-        // [BindProperty]
+        [BindProperty]
         public string Name { get; set; }
-        // [BindProperty]
+        [BindProperty]
         public string Email { get; set; }
         public void OnPost()
         {
